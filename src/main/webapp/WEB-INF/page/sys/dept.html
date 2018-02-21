@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>部门管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit">
+
+    <link rel="icon" href="/statics\css\favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/statics\libs\pace-master\themes\yellow\pace-theme-flash.css">
+    <script type="text/javascript" src="/statics/libs/pace-master/pace.min.js"></script>
+    <link rel="stylesheet" href="/statics/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/statics\css\backend.css">
+    <link rel="stylesheet" href="/statics/css/skins/_all-skins.css">
+
+    <link rel="stylesheet" href="/statics\libs\ztree\css\zTreeStyle\zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="/statics\libs\jquery\jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="/statics\libs\ztree\js\jquery.ztree.core.js"></script>
+
+    <style type="text/css">
+        html {
+            overflow-x: hidden;
+        }
+        [v-cloak] {
+            display: none;
+        }
+        .container-fluid {
+            padding-right: 0px;
+            padding-right: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        var setting = {
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+        var zNodes =[
+            { id:1, pId:0, name:"展开、折叠 自定义图标不同", open:true},
+            { id:11, pId:1, name:"叶子节点1"},
+            { id:12, pId:1, name:"叶子节点2"},
+            { id:13, pId:1, name:"叶子节点3"},
+            { id:2, pId:0, name:"展开、折叠 自定义图标相同"},
+            { id:21, pId:2, name:"叶子节点1"},
+            { id:22, pId:2, name:"叶子节点2"},
+            { id:23, pId:2, name:"叶子节点3"},
+            { id:3, pId:0, name:"不使用自定义图标", open:true },
+            { id:31, pId:3, name:"叶子节点1"},
+            { id:32, pId:3, name:"叶子节点2"},
+            { id:33, pId:3, name:"叶子节点3"}
+        ];
+
+        $(document).ready(function(){
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        });
+    </script>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini inside-header inside-aside">
+
+<section class="content-header">
+    <h1>
+        DataTables
+        <small>演示</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<section>
+    <div class="content col-xs-2">
+        <div class="panel panel-default panel-intro col">
+            <div class="panel-heading"><div class="panel-lead"><em>角色组</em></div></div>
+            <div class="panel-body">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="one">
+                        <div class="widget-body no-padding">
+                            <ul id="treeDemo" class="ztree"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content col-xs-10">
+        <div class="panel panel-default panel-intro col">
+            <div class="panel-heading"><div class="panel-lead"><em>角色组</em>角色组可以有多个,角色有上下级层级关系,如果子角色有角色组和管理员的权限则可以派生属于自己组别的下级角色组或管理员</div></div>
+            <div class="panel-body">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade active in" id="one">
+                        <div class="widget-body no-padding">
+                            <div id="toolbar" class="toolbar">
+                                <a href="javascript:;" class="btn btn-primary btn-refresh" title="刷新" ><i class="fa fa-refresh"></i> </a>
+                                <a href="javascript:;" class="btn btn-success btn-add" title="添加" ><i class="fa fa-plus"></i> 添加</a>
+                                <a href="javascript:;" class="btn btn-danger btn-del btn-disabled disabled" title="删除" ><i class="fa fa-trash"></i> 删除</a>                    </div>
+
+                            <table id="menuTable">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+<!-- jQuery 2.2.3 -->
+<script src="/statics/js/vue.min.js"></script>
+<script src="/statics/js/iview.min.js"></script>
+<script src="/statics\libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="/statics/libs/bootstrap-table/dist/bootstrap-table.js"></script>
+<script src="/statics/libs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+<script>
+    var $table = $("#menuTable");
+    $(function () {
+        // bootstrap table初始化
+        // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
+        $table.bootstrapTable({
+            url: '/statics/json/data1.json',
+            height: window.height,
+            striped: true,
+            search: true,
+            searchOnEnterKey: true,
+            showRefresh: true,
+            showToggle: true,
+            showColumns: true,
+            minimumCountColumns: 2,
+            showPaginationSwitch: true,
+            clickToSelect: true,
+            detailView: true,
+            detailFormatter: 'detailFormatter',
+            pagination: true,
+            paginationLoop: false,
+            classes: 'table table-hover  table-striped table-condensed table-bordered',
+            //sidePagination: 'server',
+            //silentSort: false,
+            smartDisplay: false,
+            idField: 'id',
+            sortName: 'id',
+            sortOrder: 'desc',
+            escape: true,
+            searchOnEnterKey: true,
+            idField: 'systemId',
+            maintainSelected: true,
+            toolbar: '#toolbar',
+            columns: [
+                {field: 'state', checkbox: true},
+                {field: 'id', title: '编号', sortable: true, halign: 'center'},
+                {field: 'username', title: '账号', sortable: true, halign: 'center'},
+                {field: 'password', title: '密码', sortable: true, halign: 'center'},
+                {field: 'name', title: '姓名', sortable: true, halign: 'center'},
+                {field: 'sex', title: '性别', sortable: true, halign: 'center'},
+                {field: 'age', title: '年龄', sortable: true, halign: 'center'},
+                {field: 'phone', title: '手机', sortable: true, halign: 'center'},
+                {field: 'email', title: '邮箱', sortable: true, halign: 'center'},
+                {field: 'address', title: '地址', sortable: true, halign: 'center'},
+                {field: 'remark', title: '备注', sortable: true, halign: 'center'},
+                {field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
+            ]
+        }).on('all.bs.table', function (e, name, args) {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="popover"]').popover();
+        });
+
+    });
+    function actionFormatter(value, row, index) {
+        return [
+            '<a class="like" href="javascript:void(0)" data-toggle="tooltip" title="Like"><i class="glyphicon glyphicon-heart"></i></a>　',
+            '<a class="edit ml10" href="javascript:void(0)" data-toggle="tooltip" title="Edit"><i class="glyphicon glyphicon-edit"></i></a>　',
+            '<a class="remove ml10" href="javascript:void(0)" data-toggle="tooltip" title="Remove"><i class="glyphicon glyphicon-remove"></i></a>'
+        ].join('');
+    }
+
+    window.actionEvents = {
+        'click .like': function (e, value, row, index) {
+            alert('You click like icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .edit': function (e, value, row, index) {
+            alert('You click edit icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        },
+        'click .remove': function (e, value, row, index) {
+            alert('You click remove icon, row: ' + JSON.stringify(row));
+            console.log(value, row, index);
+        }
+    };
+    function detailFormatter(index, row) {
+        var html = [];
+        $.each(row, function (key, value) {
+            html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+        });
+        return html.join('');
+    }
+
+</script>
+
+</html>

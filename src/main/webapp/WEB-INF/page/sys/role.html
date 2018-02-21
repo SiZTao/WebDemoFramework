@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <!-- 进度条插件 -->
+    <link rel="stylesheet" href="/statics\libs\pace-master\themes\pink\pace-theme-flash.css">
+    <script type="text/javascript" src="/statics/libs/pace-master/pace.min.js"></script>
+
+    <!-- 后台样式 -->
+    <link rel="stylesheet" href="/statics\css\backend.css">
+    <link rel="stylesheet" href="/statics/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="/statics/css/iview.css" />
+    <link rel="stylesheet" href="/statics/libs/ztree/css/metroStyle/metroStyle.css" type="text/css">
+    <style type="text/css">
+        html {
+            overflow-x: hidden;
+        }
+        [v-cloak] {
+            display: none;
+        }
+        .container-fluid {
+            padding-right: 0px;
+            padding-right: 0px;
+        }
+        .vertical-center-modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ivu-modal{
+            top: 0;
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini inside-header inside-aside bg-gray-light">
+<div id="mApp"class="container-fluid"  v-cloak>
+    <section class="content-header hide">
+
+    </section>
+    <div id="ribbon">
+        <ol class="breadcrumb pull-left">
+            <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> 控制台</a></li>
+        </ol>
+        <ol class="breadcrumb pull-right">
+            <li><a href="javascript:;" data-url="/admin/auth.group/auth">权限管理</a></li>
+            <li><a href="javascript:;" data-url="/admin/auth/group">角色组</a></li>
+        </ol>
+    </div>
+    <section>
+        <div class="content">
+            <div class="panel panel-default panel-intro">
+                <div class="panel-heading">
+                    <div class="panel-lead"><em>角色组</em>角色组可以有多个,角色有上下级层级关系,如果子角色有角色组和管理员的权限则可以派生属于自己组别的下级角色组或管理员</div>
+                </div>
+                <div class="panel-body">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="commonsearch-table" v-show="isShow">
+                            <form class="form-horizontal form-commonsearch nice-validator n-default no-border" action="" novalidate="novalidate">
+
+                                <div class="row">
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                        <label for="id" class="control-label col-xs-4">ID</label>
+                                        <div class="col-xs-8">
+                                            <input type="hidden" class="form-control operate" name="field-id" data-name="id" value="=" readonly="">
+                                            <input type="text" class="form-control" name="id" value="" placeholder="ID" id="id" data-index="1"></div>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3"><label for="title" class="control-label col-xs-4">标题</label>
+                                        <div class="col-xs-8"><input type="hidden" class="form-control operate" name="field-title" data-name="title" value="LIKE %...%" readonly="">
+                                            <input type="text" class="form-control" name="title" value="" placeholder="关键字，模糊搜索" id="title" data-index="2">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3"><label for="admin.username" class="control-label col-xs-4">用户名</label>
+                                        <div class="col-xs-8"><input type="hidden" class="form-control operate" name="field-admin.username" data-name="admin.username" value="=" readonly="">
+                                            <input type="text" class="form-control" name="admin.username" value="" placeholder="用户名" id="admin.username" data-index="4">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3"><label for="admin.nickname" class="control-label col-xs-4">昵称</label>
+                                        <div class="col-xs-8"><input type="hidden" class="form-control operate" name="field-admin.nickname" data-name="admin.nickname" value="LIKE %...%" readonly="">
+                                            <input type="text" class="form-control" name="admin.nickname" value="" placeholder="关键字，模糊搜索" id="admin.nickname" data-index="5">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3"><label for="ip" class="control-label col-xs-4">IP</label>
+                                        <div class="col-xs-8">
+                                            <input type="hidden" class="form-control operate" name="field-ip" data-name="ip" value="=" readonly="">
+                                            <input type="text" class="form-control" name="ip" value="" placeholder="IP" id="ip" data-index="6"></div>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3"><label for="createtime" class="control-label col-xs-4">创建时间</label>
+                                        <div class="col-xs-8">
+                                            <input type="hidden" class="form-control operate" name="field-createtime" data-name="createtime" value="BETWEEN" readonly="">
+                                            <div class="row row-between">
+                                                <div class="col-xs-6 11" style="position: relative;">
+                                                    <input type="datetime" class="form-control datetimepicker" name="createtime" value="" placeholder="创建时间" id="createtime" data-index="7" data-date-format="YYYY-MM-DD"></div>
+                                                <div class="col-xs-6 22" style="position: relative;">
+                                                    <input type="datetime" class="form-control datetimepicker" name="createtime" value="" placeholder="创建时间" id="createtime" data-index="7" data-date-format="YYYY-MM-DD">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                                        <div class="col-sm-8 col-xs-offset-4"><button type="submit" class="btn btn-success">提交</button>
+                                            <button type="reset" class="btn btn-default">重置</button> </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="tab-pane fade active in" id="one">
+                            <div class="widget-body no-padding">
+
+                                <div id="toolbar" class="toolbar" style="position: relative;">
+                                    <a href="javascript:;" class="btn btn-primary btn-refresh" title="刷新"><i class="fa fa-refresh"></i> </a>
+                                    <a href="javascript:;" @click="add"  class="btn btn-success btn-add" title="添加"><i class="fa fa-plus"></i> 添加</a>
+                                    <a href="javascript:;" onclick="deleteAction()" class="btn btn-danger btn-del btn-disabled disabled" title="删除"><i class="fa fa-trash"></i> 删除</a>
+                                    <a href="javascript:;" class="btn btn-danger btn-import" title="导入" id="btn-import-file" data-url="ajax/upload" data-mimetype="csv,xls,xlsx" data-multiple="false" initialized="true" style="position: relative; z-index: 1;"><i class="fa fa-upload"></i> 导入</a>
+                                    <div class="dropdown btn-group ">
+                                        <a class="btn btn-primary btn-more dropdown-toggle btn-disabled disabled" data-toggle="dropdown"><i class="fa fa-cog"></i> 更多</a>
+                                        <ul class="dropdown-menu text-left" role="menu">
+                                            <li>
+                                                <a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=normal"><i class="fa fa-eye"></i> 设为正常</a>
+                                            </li>
+                                            <li>
+                                                <a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=hidden"><i class="fa fa-eye-slash"></i> 设为隐藏</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="html5_1c6m7tdmq8qq1fs6osd14a5d44_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 239px; width: 64px; height: 31px; overflow: hidden; z-index: 0;"><input id="html5_1c6m7tdmq8qq1fs6osd14a5d44" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" accept=".csv,.xls,.xlsx" tabindex="-1"></div>
+                                    <a class="btn btn-success btn-recyclebin btn-dialog" href="cms/archives/recyclebin" title="回收站"><i class="fa fa-recycle"></i> 回收站</a>
+                                </div>
+
+                                <div class="columns-right pull-right" style="margin-top:10px;margin-left: 3px;">
+                                    <button v-on:click="toggle()" class="btn btn-default hide" type="button" name="commonSearch" title="普通搜索">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+
+                                <table id="Table">
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <modal
+            v-model="roleForm"
+            title="添加角色"
+            width="600"
+            :mask-closable="false"
+            class-name="vertical-center-modal"
+            @on-ok="handleSubmit('formValidate')"
+            @on-reset="reset"
+            @on-cancel="cancel">
+            <i-form ref="formValidate" :model="role" :rules="ruleValidate" :label-width="80">
+                <Form-item label="角色名称" prop="roleName">
+                    <i-input v-model="role.roleName" placeholder="角色名称"/>
+                </Form-item>
+                <Form-item label="所属部门" prop="deptName">
+                    <i-input v-model="role.deptName" icon="eye" readonly="readonly"
+                             @on-click="deptTree" readonly="readonly" placeholder="所属部门"/>
+                </Form-item>
+                <Form-item label="备注" prop="remark">
+                    <i-input type="textarea"  placeholder="备注"/>
+                </Form-item>
+                <Form-item label="功能权限">
+                    <div style="overflow-y: auto;max-height: 250px">
+                        <ul id="menuTree" class="ztree"></ul>
+                    </div>
+                </Form-item>
+                <Form-item label="数据权限">
+                    <div style="overflow-y: auto;max-height: 250px">
+                        <ul id="dataTree" class="ztree"></ul>
+                    </div>
+                </Form-item>
+            </i-form>
+    </modal>
+</div>
+<!-- 选择部门 -->
+<div id="deptLayer" style="display: none;padding:10px;">
+    <ul id="deptTree" class="ztree"></ul>
+</div>
+</body>
+<!--通用js插件-->
+<script src="/statics/libs/jquery/jquery-2.2.4.min.js"></script>
+<script src="/statics/js/vue.min.js"></script>
+<script src="/statics/js/vue-validator.min.js"></script>
+<script src="/statics/js/iview.min.js"></script>
+<script src="/statics\libs/bootstrap/js/bootstrap.min.js"></script>
+<!--表格插件-->
+<script src="/statics/libs/bootstrap-table/dist/bootstrap-table.js"></script>
+<script src="/statics/libs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+<script src="/statics/libs/bootstrap-table/dist/extensions/mobile/bootstrap-table-mobile.js"></script>
+
+<script type="text/javascript" src="/statics\libs\ztree\js\jquery.ztree.all.min.js"></script>
+
+<!--信息提示插件--->
+<script src="/statics\libs\toastr\toastr.min.js"></script>
+<script src="/statics\libs\layer\layer.js"></script>
+<script src="/statics/js/common.js"></script>
+<script src="/custom/role/role.js"></script>
+
+</html>

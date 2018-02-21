@@ -1,0 +1,51 @@
+[       
+            {
+                "id": "9001",
+                "text": "开发示例",
+                "icon": "fa fa-laptop",
+                "children": [
+                    {
+                        "id": "90011",
+                        "text": "角色管理",
+                        "icon": "fa fa-cog",
+                        "url": "admin/role/role.html",
+                        "targetType": "iframe-tab"
+                    },
+                    {
+                        "id": "90012",
+                        "text": "系统配置",
+                        "url": "admin/sys/setting.html",
+                        "targetType": "iframe-tab",
+                        "icon": "fa fa-file-image-o"
+                    },
+                    {
+                        "id": "90013",
+                        "text": "表单",
+                        "url": "admin/role/form.html",
+                        "targetType": "iframe-tab",
+                        "icon": "fa fa-tags"
+                    },
+                    {
+                        "id": "90014",
+                        "text": "BootstrapTable",
+                        "url": "admin/menu/menu.html",
+                        "targetType": "iframe-tab",
+                        "icon": "fa fa-bars"
+                    },
+                    {
+                        "id": "90015",
+                        "text": "TreeGrid",
+                        "url": "admin/menu/tree.html",
+                        "targetType": "iframe-tab",
+                        "icon": "fa fa-list-alt"
+                    },
+                    {
+                        "id": "90016",
+                        "text": "ztree",
+                        "url": "admin/menu/ztree.html",
+                        "targetType": "iframe-tab",
+                        "icon": "fa fa-group"
+                    }
+                ]
+            }
+        ]
